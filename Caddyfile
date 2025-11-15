@@ -1,0 +1,3 @@
+cau-ai-backend.sanbei101.xyz {
+    reverse_proxy cau-ai-backend:8000
+}

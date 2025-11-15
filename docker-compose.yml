@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: docker-proxy.sanbei101.xyz/postgres:18-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: cau-ai
+      POSTGRES_PASSWORD: secret_password
+      POSTGRES_DB: cau-ai
+    volumes:
+      - db_data:/var/lib/postgresql
+    networks:
+      - cau-ai-net
+
+  cau-ai-backend:
+    image: swr.cn-north-4.myhuaweicloud.com/sanbei/cau-ai-backend:latest
+    container_name: cau-ai-backend
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_USER: cau-ai
+      DB_PASSWORD: secret_password
+      DB_NAME: cau-ai
+    depends_on:
+      - postgres
+    networks:
+      - cau-ai-net
+      
+  caddy:
+    image: docker-proxy.sanbei101.xyz/caddy:alpine
+    container_name: caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - cau-ai-net
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  cau-ai-net:
+    driver: bridge
+    name: cau-ai-net
