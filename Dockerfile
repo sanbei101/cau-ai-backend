@@ -13,6 +13,7 @@ FROM gcr.io/distroless/static-debian13
 WORKDIR /app
 
 COPY --from=builder /build/app .
+COPY resource .
 
 EXPOSE 8000
 
