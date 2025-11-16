@@ -7,8 +7,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  image-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: sync image
+      uses: sanbei101/image-sync-action@v1
+      with:
+        registry: swr.cn-north-4.myhuaweicloud.com
+        namespace: sanbei
+        username: ${{ secrets.HUAWEI_SWR_USERNAME }}
+        password: ${{ secrets.HUAWEI_SWR_TOKEN }}
+        images: |
+          postgres:18-alpine
+          caddy:alpine
+       
   docker-build:
-    runs-on: ubuntu-24.04
+    needs: image-sync
+    runs-on: ubuntu-latest
 
     steps:
     - name: Login to HUAWEI Container Registry

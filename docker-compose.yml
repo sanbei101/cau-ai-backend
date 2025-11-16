@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: docker-proxy.sanbei101.xyz/postgres:18-alpine
+    image: swr.cn-north-4.myhuaweicloud.com/sanbei/postgres:18-alpine
     container_name: postgres
     restart: always
     environment:
@@ -27,7 +27,7 @@ services:
       - cau-ai-net
       
   caddy:
-    image: docker-proxy.sanbei101.xyz/caddy:alpine
+    image: swr.cn-north-4.myhuaweicloud.com/sanbei/caddy:alpine
     container_name: caddy
     restart: always
     ports:
