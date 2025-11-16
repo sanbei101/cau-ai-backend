@@ -17,4 +17,4 @@ COPY resource .
 
 EXPOSE 8000
 
-EntryPoint ["./app"]
+ENTRYPOINT ["./app"]
