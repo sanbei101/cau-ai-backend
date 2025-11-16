@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/phuslu/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -28,5 +29,6 @@ func init() {
 	if err != nil {
 		panic("failed to connect database")
 	}
+	log.Info().Msg("connect to postgresql success")
 	PG = db
 }
