@@ -7,7 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.12.0
 	github.com/go-playground/validator/v10 v10.30.4
 	github.com/google/uuid v1.6.0
-	github.com/phuslu/log v1.0.128
+	github.com/phuslu/log v1.0.129
 	gorm.io/datatypes v1.2.7
 	gorm.io/driver/postgres v1.6.2
 	gorm.io/gorm v1.31.2
